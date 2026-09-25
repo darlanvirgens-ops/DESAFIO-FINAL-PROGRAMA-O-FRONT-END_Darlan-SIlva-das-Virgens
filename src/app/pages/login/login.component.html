@@ -1,0 +1,64 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="logo-header">
+      <span class="logo-icon">🌱</span>
+      <h2>EcoConnect Corporate</h2>
+      <p>Acesse a plataforma ESG</p>
+    </div>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">E-mail Corporativo</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="email"
+          placeholder="nome@empresa.com"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input
+          type="password"
+          id="senha"
+          name="senha"
+          [(ngModel)]="senha"
+          placeholder="••••••••"
+          required
+        />
+      </div>
+
+      <div *ngIf="errorMessage" class="error-alert">
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" class="btn-submit">
+        Acesse a Plataforma
+      </button>
+    </form>
+
+    <div class="login-footer">
+      Ainda não tem conta? <a href="#">Cadastre-se</a>
+    </div>
+  </div>
+</div>
+
+<!-- CAIXA DE CONFIRMAÇÃO DE ACESSO (MODAL) -->
+<div class="modal-overlay" *ngIf="showConfirmModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>🔐 Confirmar Acesso</h3>
+    </div>
+    <div class="modal-body">
+      <p>Você está prestes a acessar a plataforma como <strong>{{ email }}</strong>.</p>
+      <p class="modal-subtext">Deseja prosseguir para a Dashboard?</p>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" (click)="cancelLogin()">Cancelar</button>
+      <button class="btn-confirm" (click)="confirmLogin()">Confirmar e Entrar</button>
+    </div>
+  </div>
+</div>

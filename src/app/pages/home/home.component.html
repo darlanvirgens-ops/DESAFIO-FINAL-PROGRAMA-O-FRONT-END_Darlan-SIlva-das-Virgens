@@ -1,0 +1,89 @@
+<div class="home-page-container">
+  <!-- Hero & Carrossel Institucional -->
+  <section class="carousel-section" (mouseenter)="stopAutoPlay()" (mouseleave)="startAutoPlay()">
+    <div class="carousel-wrapper">
+      <div
+        class="slide-card"
+        *ngFor="let slide of slides; let i = index"
+        [class.active]="i === currentSlide"
+      >
+        <div class="slide-image-container">
+          <img [src]="slide.imageUrl" [alt]="slide.title" class="slide-image" />
+          <div class="overlay"></div>
+        </div>
+        <div class="slide-content">
+          <span class="badge-esg">ECOCONNECT CORPORATE</span>
+          <h1>{{ slide.title }}</h1>
+          <p>{{ slide.description }}</p>
+          <button class="btn-primary" (click)="navigateToAction(slide.actionRoute)">
+            {{ slide.actionText }} →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controles do Carrossel -->
+    <button class="nav-arrow prev" (click)="prevSlide()" aria-label="Slide anterior">‹</button>
+    <button class="nav-arrow next" (click)="nextSlide()" aria-label="Próximo slide">›</button>
+
+    <div class="carousel-indicators">
+      <span
+        *ngFor="let slide of slides; let i = index"
+        [class.active]="i === currentSlide"
+        (click)="goToSlide(i)"
+      ></span>
+    </div>
+  </section>
+
+  <!-- Módulos de Acesso Rápido -->
+  <section class="modules-overview">
+    <div class="section-title">
+      <h2>Conheça os Módulos da Plataforma</h2>
+      <p>Acesse rapidamente cada funcionalidade do EcoConnect</p>
+    </div>
+
+    <div class="cards-grid">
+      <div class="module-card" routerLink="/ecoconteudo">
+        <div class="card-icon">📚</div>
+        <h3>EcoConteúdo</h3>
+        <p>Aprenda com pílulas educativas sobre Água, Energia, Reciclagem e ESG.</p>
+        <span class="card-link">Acessar trilhas →</span>
+      </div>
+
+      <div class="module-card" routerLink="/ecoquiz">
+        <div class="card-icon">🧠</div>
+        <h3>EcoQuiz</h3>
+        <p>Testes interativos com feedback imediato para fixação do conhecimento.</p>
+        <span class="card-link">Iniciar Quiz →</span>
+      </div>
+
+      <div class="module-card" routerLink="/ecocheck">
+        <div class="card-icon">🌱</div>
+        <h3>EcoCheck</h3>
+        <p>Check-in de hábitos sustentáveis diários com ganho de EcoPoints.</p>
+        <span class="card-link">Registrar hábitos →</span>
+      </div>
+
+      <div class="module-card" routerLink="/ecostore">
+        <div class="card-icon">🎁</div>
+        <h3>EcoStore</h3>
+        <p>Troque seus pontos acumulados por prêmios e incentivos verdes.</p>
+        <span class="card-link">Ver catálogo →</span>
+      </div>
+
+      <div class="module-card" routerLink="/ecopainel">
+        <div class="card-icon">📊</div>
+        <h3>EcoPainel</h3>
+        <p>Acompanhe indicadores de engajamento corporativo e hábitos.</p>
+        <span class="card-link">Ver painel →</span>
+      </div>
+
+      <div class="module-card" routerLink="/ecodata">
+        <div class="card-icon">🔐</div>
+        <h3>EcoData</h3>
+        <p>Governança digital, política de privacidade LGPD e sustentabilidade no uso de dados.</p>
+        <span class="card-link">Saber mais →</span>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,53 @@
+<section class="ecocheck-container" aria-labelledby="ecocheck-title">
+  <header class="header">
+    <div class="header-copy">
+      <span class="eyebrow">🌱 EcoCheck</span>
+      <h2 id="ecocheck-title">Check-in de Hábitos Sustentáveis</h2>
+      <p class="subtitle">Registre suas ações diárias e acumule EcoPoints!</p>
+    </div>
+    <span class="date-badge">📅 {{ todayDateStr }}</span>
+  </header>
+
+  <div class="section-heading">
+    <div>
+      <h3>Seus hábitos de hoje</h3>
+      <p>Escolha uma ação para registrar sua participação.</p>
+    </div>
+    <span class="progress-badge">{{ historyLogs.length }} registros hoje</span>
+  </div>
+
+  <div class="habits-grid">
+    <article *ngFor="let habit of habits" class="habit-card" [class.completed]="habit.completed">
+      <div class="habit-top">
+        <span class="habit-icon" aria-hidden="true">{{ habit.icon }}</span>
+        <span class="category-badge">{{ habit.category }}</span>
+      </div>
+      <h4>{{ habit.task }}</h4>
+      <div class="habit-bottom">
+        <span class="points-badge">+{{ habit.points }} EcoPoints</span>
+        <button type="button" class="btn-check" [class.is-completed]="habit.completed"
+          [disabled]="habit.completed" (click)="registerHabit(habit)"
+          [attr.aria-label]="habit.completed ? 'Hábito já registrado: ' + habit.task : 'Registrar hábito: ' + habit.task">
+          {{ habit.completed ? '✓ Registrado' : 'Registrar' }}
+        </button>
+      </div>
+    </article>
+  </div>
+
+  <section class="history-section" aria-labelledby="history-title">
+    <div class="history-heading">
+      <div>
+        <span class="eyebrow">📋 Histórico diário</span>
+        <h3 id="history-title">Ações Registradas Hoje</h3>
+      </div>
+      <span class="progress-badge">{{ historyLogs.length }} ações</span>
+    </div>
+    <ul class="history-list" *ngIf="historyLogs.length > 0; else emptyHistory">
+      <li *ngFor="let log of historyLogs" class="history-item">
+        <div class="history-detail"><span class="history-time">{{ log.time }}</span><span>{{ log.taskName }}</span></div>
+        <span class="points-earned">+{{ log.points }} pts</span>
+      </li>
+    </ul>
+    <ng-template #emptyHistory><p class="empty-history">Nenhum hábito registrado hoje. Selecione uma ação acima para começar.</p></ng-template>
+  </section>
+</section>

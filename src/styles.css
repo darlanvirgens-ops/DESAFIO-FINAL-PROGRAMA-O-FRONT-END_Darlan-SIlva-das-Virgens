@@ -1,0 +1,56 @@
+/* Paleta Global EcoConnect Corporate */
+:root {
+  --verde-inst: #103E30;
+  --verde-main: #16834A;
+  --verde-light: #E8F5EC;
+  --branco: #FFFFFF;
+  --cinza-bg: #F5F7F8;
+  --texto-main: #20312B;
+  --cinza-borda: #E2E8F0;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--cinza-bg);
+  color: var(--texto-main);
+}
+
+.btn-primary {
+  background-color: var(--verde-main);
+  color: var(--branco);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--verde-inst);
+}
+
+/* Layout de Cards e Grids */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.module-card, .info-card, .stat-card {
+  background: var(--branco);
+  border: 1px solid var(--cinza-borda);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.demo-tag {
+  background-color: #FEF3C7;
+  color: #92400E;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}

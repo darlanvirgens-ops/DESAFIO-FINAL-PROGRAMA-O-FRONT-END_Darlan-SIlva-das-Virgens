@@ -1,0 +1,95 @@
+<div class="ecopainel-container">
+  <header class="page-header">
+    <div>
+      <h1>📊 EcoPainel — Indicadores ESG</h1>
+      <p>Acompanhamento de engajamento corporativo e metas demonstrativas.</p>
+    </div>
+    <div class="demo-tag">
+      <span>⚠️ DADOS DEMONSTRATIVOS FICTÍCIOS (CRITÉRIO TCC)</span>
+    </div>
+  </header>
+
+  <!-- Métricas do Usuário Ativo -->
+  <section class="user-stats-banner">
+    <div class="user-info">
+      <h3>Status do Colaborador: {{ user.name }}</h3>
+      <p>{{ user.role }} • {{ user.email }}</p>
+    </div>
+    <div class="points-badge">
+      <small>SEU SALDO ATUAL</small>
+      <strong>🏆 {{ user.points }} EcoPoints</strong>
+    </div>
+  </section>
+
+  <!-- Gráficos & Cartões Estatísticos Corporativos -->
+  <section class="stats-grid">
+    <div class="stat-card">
+      <div class="card-icon">👥</div>
+      <div class="stat-info">
+        <h4>Colaboradores Engajados</h4>
+        <span class="number">{{ demoStats.totalEmployeesActive }}</span>
+        <small class="legend">Participação ativa no mês</small>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="card-icon">🧠</div>
+      <div class="stat-info">
+        <h4>Quizzes Realizados</h4>
+        <span class="number">{{ demoStats.quizzesCompleted }}</span>
+        <small class="legend">Testes concluídos com sucesso</small>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="card-icon">🌱</div>
+      <div class="stat-info">
+        <h4>Hábitos Registrados</h4>
+        <span class="number">{{ demoStats.habitsLogged }}</span>
+        <small class="legend">Check-ins efetuados na plataforma</small>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="card-icon">🎁</div>
+      <div class="stat-info">
+        <h4>Recompensas Entregues</h4>
+        <span class="number">{{ demoStats.rewardsRedeemed }}</span>
+        <small class="legend">Vouchers resgatados na EcoStore</small>
+      </div>
+    </div>
+
+    <!-- NOVO CARD: Métrica de Impacto ESG em Coleta Seletiva e Compostagem -->
+    <div class="stat-card">
+      <div class="card-icon">♻️</div>
+      <div class="stat-info">
+        <h4>Resíduos Desviados de Aterros</h4>
+        <span class="number">1.250 kg</span>
+        <small class="legend">Reciclagem e compostagem no mês</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- Representação Gráfica Simulada -->
+  <section class="chart-section">
+    <h3>Engajamento por Categoria de Ação</h3>
+    <div class="chart-bar-container">
+      <div class="bar-group">
+        <label>Economia de Energia (35%)</label>
+        <div class="bar-bg"><div class="bar-fill" style="width: 35%;"></div></div>
+      </div>
+      <div class="bar-group">
+        <label>Uso Construtivo de Água (25%)</label>
+        <div class="bar-bg"><div class="bar-fill" style="width: 25%;"></div></div>
+      </div>
+      <div class="bar-group">
+        <label>Reciclagem & Resíduos (20%)</label>
+        <div class="bar-bg"><div class="bar-fill" style="width: 20%;"></div></div>
+      </div>
+      <div class="bar-group">
+        <label>Mobilidade Limpa (20%)</label>
+        <div class="bar-bg"><div class="bar-fill" style="width: 20%;"></div></div>
+      </div>
+    </div>
+  </section>
+</div>

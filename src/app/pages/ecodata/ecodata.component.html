@@ -1,0 +1,62 @@
+<div class="ecodata-container">
+  <header class="page-header">
+    <h1>🔐 EcoData — Governança Digital & LGPD</h1>
+    <p>Transparência, proteção de dados pessoais e sustentabilidade na infraestrutura de TI.</p>
+  </header>
+
+  <div class="content-grid">
+    <!-- Seção de Políticas LGPD -->
+    <section class="info-card">
+      <h2>📌 Política de Privacidade e Tratamento de Dados</h2>
+      <p>Em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018), o EcoConnect garante que:</p>
+
+      <ul>
+        <li><strong>Finalidade:</strong> Os dados de engajamento são utilizados exclusivamente para o cômputo de EcoPoints e emissão de relatórios ESG internos.</li>
+        <li><strong>Não Compartilhamento:</strong> Suas informações pessoais nunca são vendidas ou repassadas a fornecedores externos não autorizados.</li>
+        <li><strong>Direitos do Titular:</strong> Você pode solicitar a exportação ou exclusão definitiva do seu histórico a qualquer momento.</li>
+      </ul>
+    </section>
+
+    <!-- Seção de Sustentabilidade Digital -->
+    <section class="info-card">
+      <h2>🌿 Sustentabilidade Digital (Green IT)</h2>
+      <p>Sustentabilidade também envolve a otimização de infraestrutura tecnológica:</p>
+
+      <ul>
+        <li><strong>Servidores com Energia Renovável:</strong> A plataforma opera em datacenters com certificação de pegada de carbono neutra.</li>
+        <li><strong>Limpeza de Armazenamento:</strong> Incentive o descarte de e-mails antigos e arquivos duplicados para diminuir a carga de energia nos servidores.</li>
+      </ul>
+    </section>
+
+    <!-- Painel Interativo de Preferências -->
+    <section class="info-card preferences-card">
+      <h2>⚙️ Gerenciamento de Preferências de Privacidade</h2>
+      <div class="form-group">
+        <label>
+          <input type="checkbox" [(ngModel)]="userPreferences.shareProgressInRanking" />
+          Exibir meu nome e pontuação no Ranking Corporativo público
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          <input type="checkbox" [(ngModel)]="userPreferences.receiveEmailAlerts" />
+          Receber resumos semanais de novidades do EcoConteúdo por e-mail
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          <input type="checkbox" [(ngModel)]="userPreferences.allowDataAnalytics" />
+          Permitir coleta de dados anônimos para melhoria contínua da plataforma
+        </label>
+      </div>
+
+      <button class="btn-primary" (click)="savePreferences()">Salvar Preferências</button>
+
+      <div class="success-alert" *ngIf="savedNotification">
+        ✓ Preferências salvas com sucesso em conformidade com a LGPD!
+      </div>
+    </section>
+  </div>
+</div>

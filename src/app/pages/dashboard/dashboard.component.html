@@ -1,0 +1,293 @@
+<!-- Navbar -->
+<header class="navbar">
+  <div class="nav-left">
+    <button class="hamburger-btn" (click)="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="logo">
+      🌱 <span>EcoConnect</span>
+      <small class="badge-corp">Corporate</small>
+    </div>
+  </div>
+
+  <nav class="hamburger-menu" [class.open]="isMenuOpen">
+    <button
+      (click)="navigateTo('home')"
+      [class.active]="currentView === 'home'"
+    >
+      🏠 Home
+    </button>
+
+    <button
+      (click)="navigateTo('dashboard')"
+      [class.active]="currentView === 'dashboard'"
+    >
+      📊 Dashboard
+    </button>
+  </nav>
+
+  <div class="user-badge" *ngIf="currentView === 'dashboard'">
+    <span class="points-pill">
+      🏆 {{ userPoints }} EcoPoints
+    </span>
+
+    <button class="logout-btn" (click)="logout()">
+      Sair
+    </button>
+  </div>
+</header>
+
+<div
+  class="menu-overlay"
+  *ngIf="isMenuOpen"
+  (click)="toggleMenu()"
+></div>
+
+<!-- HOME INSTITUCIONAL -->
+<section
+  class="home-container"
+  *ngIf="currentView === 'home'"
+>
+  <div class="hero-section">
+    <div class="hero-copy">
+      <span class="tag-esg">
+        🌱 ECOCONNECT CORPORATE · PROTÓTIPO EDUCACIONAL
+      </span>
+
+      <h1>Conectando conhecimento, hábitos e impacto.</h1>
+
+      <p>
+        Aprenda sobre sustentabilidade, pratique hábitos conscientes
+        e acompanhe sua jornada em uma plataforma interativa.
+      </p>
+
+      <div class="hero-actions">
+        <button
+          class="btn-primary"
+          (click)="openModule('ecoconteudo')"
+        >
+          Explorar conteúdos →
+        </button>
+
+        <button
+          class="hero-secondary"
+          (click)="openModule('ecopainel')"
+        >
+          Ver meu EcoPainel
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-art" aria-hidden="true">
+      <span>🌍</span>
+      <strong>Aprenda · Pratique · Transforme</strong>
+    </div>
+  </div>
+
+  <div class="home-section-heading">
+    <div>
+      <span class="home-eyebrow">
+        DESCUBRA A PLATAFORMA
+      </span>
+
+      <h2>Uma jornada de sustentabilidade</h2>
+    </div>
+
+    <span class="slide-counter">
+      {{ currentSlide + 1 }} / {{ carouselItems.length }}
+    </span>
+  </div>
+
+  <div
+    class="carousel-card"
+    *ngIf="carouselItems.length > 0"
+    aria-roledescription="carrossel"
+    aria-label="Módulos do EcoConnect"
+  >
+    <div class="carousel-slide" aria-live="polite">
+      <div class="slide-icon" aria-hidden="true">
+        {{ carouselItems[currentSlide].icon }}
+      </div>
+
+      <div class="slide-copy">
+        <span class="home-eyebrow">
+          ECOCONNECT · {{ currentSlide + 1 | number:'2.0-0' }}
+        </span>
+
+        <h2>
+          {{ carouselItems[currentSlide].title }}
+        </h2>
+
+        <p>
+          {{ carouselItems[currentSlide].description }}
+        </p>
+
+        <button
+          class="slide-cta"
+          (click)="openModule(carouselItems[currentSlide].tab)"
+        >
+          Conhecer este módulo →
+        </button>
+      </div>
+    </div>
+
+    <div class="carousel-controls">
+      <button
+        type="button"
+        class="btn-arrow"
+        (click)="prevSlide()"
+        aria-label="Slide anterior"
+      >
+        ‹
+      </button>
+
+      <div class="carousel-dots">
+        <button
+          type="button"
+          *ngFor="let item of carouselItems; let i = index"
+          [class.active]="i === currentSlide"
+          (click)="goToSlide(i)"
+          [attr.aria-label]="'Ir para slide ' + (i + 1)"
+          [attr.aria-current]="i === currentSlide ? 'true' : null"
+        ></button>
+      </div>
+
+      <button
+        type="button"
+        class="btn-arrow"
+        (click)="nextSlide()"
+        aria-label="Próximo slide"
+      >
+        ›
+      </button>
+    </div>
+  </div>
+
+  <div class="home-section-heading">
+    <div>
+      <span class="home-eyebrow">
+        SEU PRÓXIMO PASSO
+      </span>
+
+      <h2>Explore os módulos</h2>
+    </div>
+  </div>
+
+  <div class="home-module-grid">
+    <button
+      type="button"
+      *ngFor="let item of carouselItems"
+      class="home-module-card"
+      (click)="openModule(item.tab)"
+    >
+      <span class="module-icon">
+        {{ item.icon }}
+      </span>
+
+      <strong>
+        {{ item.shortTitle }}
+      </strong>
+
+      <span>
+        {{ item.description }}
+      </span>
+
+      <span class="module-link">
+        Acessar →
+      </span>
+    </button>
+  </div>
+
+  <p class="home-disclaimer">
+    Ambiente demonstrativo para apresentação acadêmica.
+    Pontos e registros são dados do protótipo,
+    não métricas ambientais auditadas.
+  </p>
+</section>
+
+<!-- VISÃO DASHBOARD: ABAS -->
+<main
+  class="container"
+  *ngIf="currentView === 'dashboard'"
+>
+  <div class="dashboard-tabs">
+    <button
+      [class.active]="activeTab === 'ecopainel'"
+      (click)="switchTab('ecopainel')"
+    >
+      📊 EcoPainel
+    </button>
+
+    <button
+      [class.active]="activeTab === 'ecoconteudo'"
+      (click)="switchTab('ecoconteudo')"
+    >
+      📚 EcoConteúdo
+    </button>
+
+    <button
+      [class.active]="activeTab === 'ecocheck'"
+      (click)="switchTab('ecocheck')"
+    >
+      🌱 EcoCheck
+    </button>
+
+    <button
+      [class.active]="activeTab === 'ecoquiz'"
+      (click)="switchTab('ecoquiz')"
+    >
+      🧠 EcoQuiz
+    </button>
+
+    <button
+      [class.active]="activeTab === 'ecostore'"
+      (click)="switchTab('ecostore')"
+    >
+      🎁 EcoStore
+    </button>
+
+    <button
+      [class.active]="activeTab === 'ecodata'"
+      (click)="switchTab('ecodata')"
+    >
+      🔐 EcoData
+    </button>
+  </div>
+
+  <div class="tab-content">
+
+    <!-- 📊 1. EcoPainel -->
+    <div *ngIf="activeTab === 'ecopainel'">
+      <app-ecopainel></app-ecopainel>
+    </div>
+
+    <!-- 📚 2. EcoConteúdo -->
+    <div *ngIf="activeTab === 'ecoconteudo'">
+      <app-ecoconteudo></app-ecoconteudo>
+    </div>
+
+    <!-- 🌱 3. EcoCheck -->
+    <div *ngIf="activeTab === 'ecocheck'">
+      <app-ecocheck></app-ecocheck>
+    </div>
+
+    <!-- 🧠 4. EcoQuiz -->
+    <div *ngIf="activeTab === 'ecoquiz'">
+      <app-ecoquiz></app-ecoquiz>
+    </div>
+
+    <!-- 🎁 5. EcoStore -->
+    <div *ngIf="activeTab === 'ecostore'">
+      <app-ecostore></app-ecostore>
+    </div>
+
+    <!-- 🔐 6. EcoData -->
+    <div *ngIf="activeTab === 'ecodata'">
+      <app-ecodata></app-ecodata>
+    </div>
+
+  </div>
+</main>
